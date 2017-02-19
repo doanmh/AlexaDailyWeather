@@ -1,0 +1,15 @@
+{
+  "name": "alexa-daily-weather",
+  "version": "1.0.0",
+  "description": "Get current weather information and weather forecast",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Minh Doan",
+  "license": "Apache-2.0",
+  "dependencies": {
+  	"alexa-sdk": "^1.0.0",
+  	"async": "2.0.0-rc.6"
+  }
+}

@@ -1,0 +1,11 @@
+CurrentWeatherIntent what is current weather
+CurrentWeatherIntent what is the weather like
+CurrentWeatherIntent what is the weather outside
+CurrentWeatherIntent get current weather information
+CurrentWeatherIntent give me current weather information
+
+ForecastIntent get weather forecast for {date}
+ForecastIntent what is the weather like for {date}
+ForecastIntent weather forecast for {date}
+
+AdviceIntent what should I wear today

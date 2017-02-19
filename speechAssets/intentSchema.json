@@ -1,0 +1,23 @@
+{
+	"intents": [
+      	{
+          	"intent": "AMAZON.StopIntent",
+          	"slots": []
+        },
+		{
+			"intent": "CurrentWeatherIntent"
+		},
+      	{
+        	"intent": "ForecastIntent",
+          	"slots": [
+              {
+              	"name": "date",
+              	"type": "DAY"  
+              }
+            ]
+      	},
+      	{
+          	"intent": "AdviceIntent"
+        }
+	]
+}
