@@ -2,9 +2,7 @@
 
 var config = {
 	appId : undefined,
-	// Replace by your ID
-	weatherId : "",
-	// This is lat and lon of Cincinnati, you can change to yours
+	weatherId : "338aea699572cc03f765374f348ef5c8",
 	location : "39.161999,-84.456886",
 	units : "si",
 	exclude : "minutely,hourly",
