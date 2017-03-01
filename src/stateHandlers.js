@@ -217,11 +217,11 @@ function analyzeWind(speed) {
         return "Also, There will be light wind ";
     } else if (speed < 5 && speed >= 1) {
         return "Also, be aware of the moderate wind ";
-    } else if (speed >= 5 && speend < 10) {
+    } else if (speed >= 5 && speed < 10) {
         return "Also, please be careful of the pretty strong wind ";
     } else if (speed >= 10 && speed < 20) {
         return "Please be cautious of the strong wind ";
-    } else if (speed >= 20 && speend < 30) {
+    } else if (speed >= 20 && speed < 30) {
         return 
     } else {
         return "Please be very cautious of the extremely strong wind ";
