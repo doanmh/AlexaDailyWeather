@@ -10,14 +10,20 @@
       	{
         	"intent": "ForecastIntent",
           	"slots": [
-              {
-              	"name": "date",
-              	"type": "DAY"  
-              }
-            ]
+		      {
+			"name": "date",
+			"type": "DAY"  
+		      }
+            	]
       	},
       	{
-          	"intent": "AdviceIntent"
+          	"intent": "AdviceIntent",
+		"slots": [
+		      {
+			"name": "date",
+			"type": "DAY"  
+		      }
+            	]
         }
 	]
 }
