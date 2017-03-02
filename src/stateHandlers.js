@@ -101,18 +101,23 @@ var stateHandlers = {
 	        parseJsonWeather(weatherUrl, function(weather) {
 	            var date = new Date();
 	            date = date.getDay();
-	            var slotValue = forecastWeather.event.request.intent.slots.date.value.toLowerCase();
-	            var dataIndex;
-	            if (slotValue == "tomorrow") {
-	                dataIndex = 1;
-	            } else if (slotValue == "today") {
-	                dataIndex = 0;
-	            } else {
-	                dataIndex = dateMap[slotValue] - date;    
-	                if (dataIndex == 0) {
-	                    dataIndex = 7;
-	                }
-	            }
+	            if ("value" in advice.event.request.intent.slots.date) {
+	        		var slotValue = advice.event.request.intent.slots.date.value.toLowerCase();
+		            var dataIndex;
+		            if (slotValue == "tomorrow") {
+		                dataIndex = 1;
+		            } else if (slotValue == "today") {
+		                dataIndex = 0;
+		            } else {
+		                dataIndex = dateMap[slotValue] - date;    
+		                if (dataIndex == 0) {
+		                    dataIndex = 7;
+		                }
+		            }
+	        	} else {
+	        		dataIndex = 0;
+	        		slotValue = "Today";
+	        	}
 	            var minTemp = Math.round(weather.daily.data[dataIndex].temperatureMin);
 	            var maxTemp = Math.round(weather.daily.data[dataIndex].temperatureMax);
 	            var description = weather.daily.data[dataIndex].summary;
@@ -143,30 +148,49 @@ var stateHandlers = {
 	    'AdviceIntent': function() {
 	        var advice = this;
 	        parseJsonWeather(weatherUrl, function(weather) {
-	            var minTemp = Math.round(weather.daily.data[0].apparentTemperatureMin);
-	            var maxTemp = Math.round(weather.daily.data[0].apparentTemperatureMax);
+	        	var date = new Date();
+	        	date = date.getDay();
+	        	if ("value" in advice.event.request.intent.slots.date) {
+	        		var slotValue = advice.event.request.intent.slots.date.value.toLowerCase();
+		            var dataIndex;
+		            if (slotValue == "tomorrow") {
+		                dataIndex = 1;
+		            } else if (slotValue == "today") {
+		                dataIndex = 0;
+		            } else {
+		                dataIndex = dateMap[slotValue] - date;    
+		                if (dataIndex == 0) {
+		                    dataIndex = 7;
+		                }
+		            }
+	        	} else {
+	        		dataIndex = 0;
+	        		slotValue = "Today";
+	        	}
+	            var minTemp = Math.round(weather.daily.data[dataIndex].apparentTemperatureMin);
+	            var maxTemp = Math.round(weather.daily.data[dataIndex].apparentTemperatureMax);
 	            var averageTemp = (minTemp + maxTemp)/2;
-	            var precipChance = weather.daily.data[0].precipProbability;
-	            var mainWeather = weather.daily.data[0].icon;
+	            var precipChance = weather.daily.data[dataIndex].precipProbability;
+	            var mainWeather = weather.daily.data[dataIndex].icon;
 	            var speechText = "";
 	            if (averageTemp <= -5) {
-	                speechText += "Today is very cold. You should wear something really warm. A coat is a good idea. Don't forget your gloves and scarf. ";
+	                speechText += slotValue + " is very cold. You should wear something really warm. A coat is a good idea. Don't forget your gloves and scarf. ";
 	            } else if (averageTemp > -5 && averageTemp <= 5) {
-	                speechText += "Today is cold. You should consider wearing a sweat shirt inside. Gloves and scarf may be a good idea. ";
+	                speechText += slotValue + " is cold. You should consider wearing a sweat shirt inside. Gloves and scarf may be a good idea. ";
 	            } else if (averageTemp > 5 && averageTemp <= 10) {
-	                speechText += "Today is not very cold. You can just wear a hoodie. ";
+	                speechText += slotValue + " is not very cold. You can just wear a hoodie. ";
 	            } else if (averageTemp > 10 && averageTemp <= 20) {
-	                speechText += "Today is warm. You can just wear a long-sleeve shirt or a hoodie is also ok. ";
+	                speechText += slotValue + " is warm. You can just wear a long-sleeve shirt or a hoodie is also ok. ";
 	                if (mainWeather.toLowerCase() == "clear-day") {
 	                    speechText += "It will be sunny during the day so sunglasses is not a good choice. ";
 	                }
 	            } else if (averageTemp > 20 && averageTemp <= 30) {
-	                speechText += "Today is very warm. You can just wear a T-shirt. ";
+	                speechText += slotValue + " is very warm. You can just wear a T-shirt. ";
 	                if (mainWeather.toLowerCase() == "clear-day") {
 	                    speechText += "It will be sunny during the day so sunglasses is not a good choice. ";
 	                }
 	            } else {
-	                speechText += "Today is really hot. You should wear something cool. May be shorts and a T-shirt. ";
+	                speechText += slotValue + " is really hot. You should wear something cool. May be shorts and a T-shirt. ";
 	                if (mainWeather.toLowerCase() == "clear-day") {
 	                    speechText += "It will be sunny during the day so sunglasses is not a good choice. ";
 	                }

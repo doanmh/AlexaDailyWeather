@@ -8,4 +8,6 @@ ForecastIntent get weather forecast for {date}
 ForecastIntent what is the weather like for {date}
 ForecastIntent weather forecast for {date}
 
-AdviceIntent what should I wear today
+AdviceIntent what should I wear {date}
+AdviceIntent what should I wear for {date}
+AdviceIntent I'm going out
