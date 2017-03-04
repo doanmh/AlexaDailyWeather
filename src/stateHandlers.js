@@ -101,8 +101,8 @@ var stateHandlers = {
 	        parseJsonWeather(weatherUrl, function(weather) {
 	            var date = new Date();
 	            date = date.getDay();
-	            if ("value" in advice.event.request.intent.slots.date) {
-	        		var slotValue = advice.event.request.intent.slots.date.value.toLowerCase();
+	            if ("value" in forecastWeather.event.request.intent.slots.date) {
+	        		var slotValue = forecastWeather.event.request.intent.slots.date.value.toLowerCase();
 		            var dataIndex;
 		            if (slotValue == "tomorrow") {
 		                dataIndex = 1;
